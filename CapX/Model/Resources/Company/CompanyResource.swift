@@ -21,10 +21,21 @@ struct GetCompanyInfoResource{
             case .success(let companyDetails):
                 
                 print("infro : \(companyDetails.info)")
-               completionHandler(companyDetails,nil)
-         
+                
+                if companyDetails.info != nil{
+                    completionHandler(nil,K.Error.dailyLimitREachedMSg)
+                    return
+                }
+                
+                if companyDetails.name == nil{
+                    completionHandler(nil,K.Error.enterCorrectSymbol)
+                    return
+                }
+                
+                completionHandler(companyDetails,nil)
+                
             case .failure(let error):
-              
+                
                 if case .unAuthorized(let i) = error {
                     completionHandler(nil,i)
                 }

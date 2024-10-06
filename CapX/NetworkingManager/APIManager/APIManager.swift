@@ -121,7 +121,7 @@ final class APIManager{
                 catch let error {
                     print(error.localizedDescription)
                     print("did not decode, error in data type")
-                    completionHandler(.failure(DataError.unAuthorized("\(K.Error.enterCorrectSymbol)")))
+                    completionHandler(.failure(DataError.unAuthorized("\(K.Error.someThingWentWrong)")))
                }
             }.resume()
        
